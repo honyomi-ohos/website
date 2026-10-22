@@ -1,0 +1,30 @@
+[build.environment]
+  NODE_VERSION = "22"
+
+  NPM_FLAGS = "--version"
+
+[build]
+  publish = "dist"
+  command = "npm install && npm run build"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/feed.rss"
+  [headers.values]
+    Cache-Control = "public, max-age=600"
+
+[[headers]]
+  for = "/en/feed.rss"
+  [headers.values]
+    Cache-Control = "public, max-age=600"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

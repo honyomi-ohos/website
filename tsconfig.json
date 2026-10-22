@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "jsx": "preserve",
+    "lib": ["esnext", "dom"],
+    "useDefineForClassFields": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "types": ["vite/client", "@types/gtag.js"],
+    "strict": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "noEmit": true
+  },
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.ts",
+    "src/**/*.vue"
+  ],
+  "exclude": ["**/node_modules/**", "dist/**", "src/**/[tag].paths.ts"],
+  "allowSyntheticDefaultImports": true
+}

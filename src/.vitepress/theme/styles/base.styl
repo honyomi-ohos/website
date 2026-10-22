@@ -1,0 +1,412 @@
+/**
+ * Customize default theme styling by overriding CSS variables:
+ * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
+ */
+/**
+ * Colors
+ * -------------------------------------------------------------------------- */
+
+// Assign theme color
+$themeColor = #E5484D
+
+:root {
+  --vp-c-brand: $themeColor
+  --vp-c-brand-light: tint($themeColor, 20%)
+  --vp-c-brand-lighter: tint($themeColor, 40%)
+  --vp-c-brand-lightest: tint($themeColor, 60%)
+  --vp-c-brand-dark: shade($themeColor, 25%)
+  --vp-c-brand-darker: shade($themeColor, 50%)
+  --vp-c-brand-dimm: alpha($themeColor, 0.08)
+  --vp-c-brand-border: alpha($themeColor, 0.32)
+}
+
+// Rounded corners for content images inserted via HTML (our converted images)
+
+.vp-doc img[loading="lazy"][decoding="async"] {
+  border-radius: 12px
+}
+
+/**
+ * Dark/Light Theme Overrides
+ * -------------------------------------------------------------------------- */
+
+html:not(.dark) {
+  .only-dark,
+  img[data-mode="darkmode-only"] {
+    display: none !important
+
+    & + figcaption {
+      display: none !important
+    }
+  }
+
+  figure:has(img[data-mode="darkmode-only"]) {
+    display: none !important
+  }
+}
+
+.dark {
+  .only-light,
+  img[data-mode="lightmode-only"] {
+    display: none !important
+
+    & + figcaption {
+      display: none !important
+    }
+  }
+
+  figure:has(img[data-mode="lightmode-only"]) {
+    display: none !important
+  }
+}
+
+/**
+ * Component: Button
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-button-brand-bg: var(--vp-c-brand-darker)
+}
+
+/**
+ * Component: Home
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-home-hero-name-color: transparent
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, var(--vp-c-brand) 30%, var(--vp-c-brand-dark))
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, var(--vp-c-brand-light) 50%, var(--vp-c-brand-lighter) 50%)
+  --vp-home-hero-image-filter: blur(40px)
+}
+
+.dark {
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, var(--vp-c-brand-darker) 25%, var(--vp-c-brand-darkest) 25%)
+}
+
+@media (min-width 640px) {
+  :root {
+    --vp-home-hero-image-filter: blur(56px)
+  }
+}
+
+@media (min-width 960px) {
+  :root {
+    --vp-home-hero-image-filter: blur(72px)
+  }
+}
+
+.VPFooter {
+  .divider {
+    color: var(--vp-c-divider)
+  }
+}
+
+/**
+ * Component: Custom Block
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-custom-block-tip-border: var(--vp-c-brand)
+  --vp-custom-block-tip-text: var(--vp-c-brand-darker)
+  --vp-custom-block-tip-bg: var(--vp-c-brand-dimm)
+}
+
+.dark {
+  --vp-custom-block-tip-border: var(--vp-c-brand)
+  --vp-custom-block-tip-text: var(--vp-c-brand-lightest)
+  --vp-custom-block-tip-bg: var(--vp-c-brand-dimm)
+  --vp-custom-block-info-bg: #212127
+}
+
+.plugin-tabs {
+  &--content {
+    padding: 2rem !important
+  }
+}
+
+/**
+ * Component: Algolia
+ * -------------------------------------------------------------------------- */
+
+.DocSearch {
+  --docsearch-primary-color: var(--vp-c-brand) !important
+}
+
+.VPImage.image-src {
+  border-radius: 8px
+}
+
+/**
+ * Component: LocalSearch
+ * */
+
+.VPLocalSearchBox {
+  --vp-local-search-highlight-bg: var(--vp-c-brand-soft)
+  --vp-local-search-highlight-text: var(--vp-c-brand-dark)
+}
+
+.dark .VPLocalSearchBox {
+  --vp-local-search-highlight-text: var(--vp-c-brand-lightest)
+}
+
+/**
+ * Component: Image Figure
+ * */
+
+main figure {
+  margin: 2rem 0
+  transition: transform var(--vp-tt)
+
+  img {
+    margin: 0 auto
+    border-radius: 12px
+    box-shadow: 2px 2px 8px 4px var(--vp-c-bg-alt)
+
+    &[alt="Translation progress"] {
+      box-shadow: none !important
+    }
+  }
+
+  figcaption {
+    text-align: center
+    margin-top: 1.25rem
+    font-size: 0.875rem
+    color: var(--vp-c-text-2)
+  }
+
+  & > a .external-link-icon {
+    display: none
+  }
+}
+
+main :where(h1, h2, h3, h4, h5, h6) + figure {
+  margin-top: 1.5rem
+}
+
+.custom-block {
+  figure figcaption {
+    color: inherit
+  }
+
+  &.tip figure img {
+    --vp-c-bg-alt: var(--vp-custom-block-tip-bg)
+  }
+}
+
+/**
+ * Component: Links
+ * */
+
+@media print {
+  figure:has(img)>a[href^="http://"]:after,
+  figure:has(img)>a[href^="https://"]:after {
+    content: ""
+  }
+}
+
+.vp-doc a {
+  text-decoration: none
+
+  &:hover {
+    text-decoration: underline
+    text-underline-offset: 2px
+  }
+}
+
+/**
+ * Component: Shortcodes
+ * */
+
+.navigation {
+  color: var(--vp-c-green-2)
+  font-weight: 600
+
+  &:hover {
+    color: var(--vp-c-green-1)
+    cursor: default
+  }
+
+  svg,
+  span.name {
+    vertical-align: middle // Align both SVG and <span> vertically
+    position: relative
+    bottom: 1px
+  }
+
+  svg {
+    fill: currentColor
+    height: 1em
+    width: 1em
+    display: inline-block
+    margin-right: 4px
+  }
+}
+
+/**
+ * Component: Appearance Switch
+ * */
+
+.menu + .appearance::before {
+  margin-right: 8px !important
+}
+
+.appearance + .social-links::before {
+  margin-left: 8px !important
+}
+
+.VPMenu .CustomSwitchAppearance {
+  margin-right: -8px
+}
+
+/**
+ * Liquid Glass
+ * -------------------------------------------------------------------------- */
+/* Real HTML-in-Canvas glass (https://wicg.github.io/html-in-canvas/):
+ * each glass surface is a content="drawable" <canvas> holding a drawable
+ * backdrop element, snapshotted into a WebGL2 texture via
+ * texElementSubImage2D and rendered with a glass shader. Browsers without
+ * the flagged API get the CSS backdrop-filter fallback. */
+
+html {
+  background-color: var(--vp-c-bg)
+  /* Glass canvases outset by a sampling pad must not create scrollbars. */
+  overflow-x: clip
+}
+
+body {
+  position: relative
+  background-color: transparent
+}
+
+/* Shared ambient blob gradients. Both the fixed page layer and each glass
+   backdrop use them; --lg-ox/--lg-oy keep the blobs viewport-aligned when
+   painted from a glass surface at another document position. */
+.lg-ambient-bg {
+  --lg-ox: 0px
+  --lg-oy: 0px
+  background:
+    radial-gradient(42rem 30rem at calc(12vw + var(--lg-ox)) calc(-6vh + var(--lg-oy)), rgba(229, 72, 77, 0.1), transparent 60%),
+    radial-gradient(38rem 28rem at calc(88vw + var(--lg-ox)) calc(12vh + var(--lg-oy)), rgba(58, 122, 244, 0.08), transparent 60%),
+    radial-gradient(46rem 34rem at calc(70vw + var(--lg-ox)) calc(86vh + var(--lg-oy)), rgba(240, 138, 93, 0.07), transparent 60%)
+}
+
+html.dark .lg-ambient-bg {
+  background:
+    radial-gradient(44rem 32rem at calc(10vw + var(--lg-ox)) calc(-4vh + var(--lg-oy)), rgba(229, 72, 77, 0.16), transparent 60%),
+    radial-gradient(40rem 30rem at calc(92vw + var(--lg-ox)) calc(8vh + var(--lg-oy)), rgba(64, 86, 214, 0.14), transparent 60%),
+    radial-gradient(50rem 36rem at calc(66vw + var(--lg-ox)) calc(92vh + var(--lg-oy)), rgba(122, 60, 150, 0.1), transparent 60%)
+}
+
+/* Fixed ambient color blobs behind all content, above the page background. */
+.lg-ambient {
+  position: fixed
+  inset: 0
+  z-index: -1
+  pointer-events: none
+}
+
+/* The drawable backdrop laid out inside each glass canvas. */
+.lg-backdrop {
+  display: block
+}
+
+/* The glass canvas sits behind the content of its glass root. */
+.liquid-glass-canvas {
+  z-index: -1
+  display: block
+  pointer-events: none
+  opacity: 0
+  transition: opacity 0.45s ease
+
+  &.lg-ready {
+    opacity: 1
+  }
+}
+
+/* CSS fallback when the HTML-in-Canvas API is unavailable. */
+[data-liquid-glass].lg-fallback {
+  backdrop-filter: blur(18px) saturate(1.5)
+  -webkit-backdrop-filter: blur(18px) saturate(1.5)
+  background: rgba(255, 255, 255, 0.5)
+}
+
+html.dark [data-liquid-glass].lg-fallback {
+  background: rgba(18, 19, 23, 0.55)
+}
+
+@media print {
+  .lg-ambient,
+  .liquid-glass-canvas {
+    display: none
+  }
+}
+
+/* Transparent navbar: the bar glass canvas provides the surface. */
+:root {
+  --vp-nav-bg-color: transparent
+}
+
+/* Glass hero action buttons (VPButton replacement). */
+.glass-button {
+  display: inline-block
+  border-radius: 20px
+
+  &.big {
+    border-radius: 24px
+  }
+
+  .VPButton {
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    gap: 8px
+    border: none
+    border-radius: inherit
+    font-weight: 600
+    white-space: nowrap
+    cursor: pointer
+    background: transparent
+    text-decoration: none !important
+    transition: color 0.25s, transform 0.25s
+  }
+
+  .VPButton.medium {
+    padding: 0 24px
+    font-size: 16px
+    line-height: 44px
+  }
+
+  .VPButton.big {
+    padding: 0 28px
+    font-size: 17px
+    line-height: 52px
+  }
+
+  .VPButton.brand {
+    color: #fff
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18)
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22)
+
+    &:hover {
+      color: #fff
+    }
+  }
+
+  .VPButton.alt,
+  .VPButton.sponsor {
+    color: var(--vp-c-text-1)
+    box-shadow: inset 0 0 0 1px rgba(127, 127, 127, 0.22)
+
+    &:hover {
+      color: var(--vp-c-brand)
+    }
+  }
+
+  &:hover .VPButton {
+    transform: translateY(-1px)
+  }
+
+  &:active .VPButton {
+    transform: translateY(0)
+  }
+}
