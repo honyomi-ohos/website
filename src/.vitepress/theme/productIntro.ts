@@ -63,7 +63,7 @@ function zh(): IntroCopy {
           '检查更新可以限制为仅 Wi-Fi，或仅在充电时。',
           '把作品加到桌面卡片后，可以从卡片直接打开。',
         ],
-        image: '/showcase/library.png',
+        image: '/showcase/library.jpeg',
         alt: '书架：网格封面、分类页签和未读角标',
         link: { href: `${docs}/docs/faq/library`, text: '书架常见问题' },
       },
