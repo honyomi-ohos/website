@@ -10,9 +10,9 @@ Common problems and solutions when running Honyomi.
 
 ## The app won't install
 
+* Install it from Huawei AppGallery. Sideloading a package is not supported;
 * Make sure your system is HarmonyOS 6.1.0 or higher;
-* Make sure the package is intact (download it again);
-* If an upgrade install fails, uninstall the old version first ([back up your data](/en/docs/guides/backups) beforehand).
+* If an update fails, uninstall the old version first ([back up your data](/en/docs/guides/backups) beforehand), then install it again from the store.
 
 ## A source won't load content
 
@@ -45,8 +45,8 @@ Common problems and solutions when running Honyomi.
 
 ## Tracking sync fails
 
-* Make sure you completed the authorization on the service's website;
-* The token may have expired – try disconnecting and reconnecting;
+* In Settings → Tracking, confirm that service is signed in. Online services use an authorization page, Kitsu and MangaUpdates use a username and password, and Komga, Kavita, and Suwayomi need your server address;
+* If the sign-in has expired, sign out of that service and sign in again;
 * Check your network connection.
 
 ## Downloads stop or fail

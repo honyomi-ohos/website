@@ -10,11 +10,12 @@ description: 帮助你快速上手 Honyomi 的必备信息。
 
 ## 安装指南
 
-### 下载 Honyomi
+### 安装 Honyomi
 
-1. 访问本站 [下载](/download/) 页面获取最新版本的 **Honyomi**；
-1. 下载完成后打开安装包；
-1. 按提示完成安装。
+1. 打开华为应用市场，搜索 **Honyomi**，或从本站 [下载](/download/) 页进入应用市场；
+1. 在应用市场中完成安装。
+
+华为不允许侧载，本站不提供安装包。更新也由应用市场推送。
 
 ::: info 系统要求
 Honyomi 需要 HarmonyOS 6.1.0 或更高版本，支持手机 / 平板 / PC。
@@ -33,7 +34,8 @@ Honyomi 需要 HarmonyOS 6.1.0 或更高版本，支持手机 / 平板 / PC。
 安装社区扩展（`.honyomiplug`）接入在线书源：
 
 * 在 <nav to="main_browse" /> 页签中，未安装扩展时会显示扩展安装引导；
-* 获取 `.honyomiplug` 插件包后，在 <nav to="extensions" /> 中安装。
+* 在 <nav to="extensions" /> 添加插件仓库地址，刷新后从列表安装或更新；
+* 也可以从文件选择器安装本地的 `.honyomiplug` 或 `.zip`。
 
 ::: danger 注意
 Honyomi 不为任何第三方扩展或扩展仓库提供资源。任何第三方扩展都将拥有应用的完整访问能力，且可能包含恶意代码。

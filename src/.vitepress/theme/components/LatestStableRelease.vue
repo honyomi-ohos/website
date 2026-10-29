@@ -2,7 +2,6 @@
 import { IconDownload } from '@iconify-prerendered/vue-mdi'
 import { data as stableRelease } from '../data/latestStableRelease.data'
 import { useThemeI18n } from '../utils/i18n'
-import LiquidGlass from './LiquidGlass.vue'
 import LocalizedDate from './LocalizedDate.vue'
 
 const { labels } = useThemeI18n()
@@ -10,7 +9,7 @@ const { labels } = useThemeI18n()
 
 <template>
   <aside v-if="stableRelease" class="latest-stable-release" aria-label="Latest stable release">
-    <LiquidGlass preset="card" class="latest-release-glass">
+    <div class="latest-release-card">
       <div class="latest-release-summary">
         <span class="release-kicker">{{ labels.latestStableKicker }}</span>
         <strong>{{ stableRelease.name }}</strong>
@@ -25,7 +24,7 @@ const { labels } = useThemeI18n()
           <span class="download-label">{{ labels.download }}</span>
         </a>
       </div>
-    </LiquidGlass>
+    </div>
   </aside>
 </template>
 
@@ -34,7 +33,7 @@ const { labels } = useThemeI18n()
   margin-top: 1.5rem
 }
 
-.latest-release-glass {
+.latest-release-card {
   display: flex
   flex-wrap: wrap
   align-items: center
@@ -43,6 +42,7 @@ const { labels } = useThemeI18n()
   max-width: 100%
   padding: 0.8rem 0.9rem 0.8rem 1rem
   border-radius: 24px
+  background: var(--vp-c-bg-soft)
   box-shadow: inset 0 0 0 1px var(--vp-c-divider), 0 12px 32px rgba(0, 0, 0, 0.14)
 }
 
@@ -95,7 +95,7 @@ const { labels } = useThemeI18n()
 }
 
 @media (max-width 640px) {
-  .latest-release-glass {
+  .latest-release-card {
     position: relative
     width: 100%
     align-items: center

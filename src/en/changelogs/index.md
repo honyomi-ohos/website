@@ -13,6 +13,6 @@ import ChangelogsList from "@theme/components/ChangelogsList.vue";
 
 # Changelogs
 
-Changelogs of all Honyomi stable releases, which are also available [on GitHub](https://github.com/ShueyYuen/honyomi/releases).
+Changelogs of all Honyomi stable releases. Install and update the app from Huawei AppGallery.
 
 <ChangelogsList />

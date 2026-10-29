@@ -1,32 +1,47 @@
 ---
 title: Backups
 titleTemplate: Guides
-description: Guide to backing up and restoring Honyomi data.
+description: How to back up and restore Honyomi library data.
 ---
 
 # Backups
 
-Guide to backing up and restoring **Honyomi** data.
+How to back up and restore the **Honyomi** library. The screen is <navEn to="main_more" /> → **Data and storage**, not another settings group.
 
-## Creating a backup
+## What a backup contains
 
-1. Go to <navEn to="settings" />;
-1. Find the **Backup** item;
-1. Tap **Backup** to export your library, categories, reading progress, and download history to a local backup file;
-1. We recommend copying the backup file to external storage or a cloud drive.
+Manual and automatic backups are the same JSON file:
 
-::: info Backup contents
-Backup files include your library, categories, reading progress, and download history. They contain **no** tokens, passwords, or cookies.
-:::
+- Category names;
+- Series in the library: source, URL, title, cover URL, author, description, tags, status, category, and content type;
+- For each chapter: URL, name, chapter number, read flag, and the last page read.
 
-## Restoring a backup
+The file does not include tracking tokens, account passwords, or cookies, and it does not include downloaded images or video. The app still asks you to be careful about sharing a backup.
 
-1. Go to <navEn to="settings" /> → **Backup**;
-1. Tap **Restore** and choose a backup file;
-1. Confirm the import – your library data will be restored.
+You can also export the library as CSV, with optional title and author columns. A CSV file cannot be restored.
+
+## Create a backup
+
+1. Open <navEn to="main_more" /> → **Data and storage**;
+1. Tap **Create backup**;
+1. Choose a location in the system document picker. The name looks like `honyomi_backup_<timestamp>.json`.
+
+Copy that file somewhere else as well.
+
+## Automatic backups
+
+The interval can be off, every 6 hours, every 12 hours, every day, every 2 days, or every week. Automatic files are written in the app’s private directory, and only the latest 3 are kept. The page shows when the last automatic backup ran.
+
+## Restore a backup
+
+1. Open **Data and storage**;
+1. Tap **Restore backup** and pick a `.json` file;
+1. After import, the library, categories, and chapter progress match the file.
+
+Downloaded pictures and video are not in the backup, so a restore does not bring them back.
 
 ## When to back up
 
-- Before uninstalling or upgrading the app;
-- Before [migrating sources](/en/docs/guides/source-migration);
-- Regularly, just to be safe.
+- Before uninstalling or moving to another device;
+- Before a [source migration](/en/docs/guides/source-migration);
+- Or leave automatic backups on one of the intervals above.

@@ -6,33 +6,42 @@ description: Frequently asked questions about Honyomi settings.
 
 # Settings
 
-Frequently asked questions about the Honyomi <navEn to="settings" /> sections.
+Frequently asked questions about Honyomi <navEn to="settings" />. A wide window shows categories on the left and the page on the right. On a phone, each item opens on its own.
 
-## Which settings sections are available?
+## Which groups are there?
 
-| Section | Contents |
+| Group | Contents |
 | --- | --- |
-| <navEn to="reader" /> | Reader theme, page-turn mode, trimming, filters, and more |
-| <navEn to="player" /> | Playback speed, auto-play, danmaku options |
-| <navEn to="browse" /> | NSFW source visibility |
-| <navEn to="downloads" /> | Download location, Wi-Fi-only downloads |
-| <navEn to="appearance" /> | Dark mode, dynamic color, icon style |
-| <navEn to="advanced" /> | Custom User-Agent, encrypted DNS (DoH) toggle and provider |
-| <navEn to="security-and-privacy" /> | App lock (biometrics), lock timing, privacy window, notification content |
-| <navEn to="local" /> | Local directory management |
-| About | Version info, open source licenses, privacy policy, help |
+| General | Which tab opens at launch: Library, Updates, History, Browse, or More |
+| <navEn to="appearance" /> | Interface language, light / dark / follow system, 23 color themes, pure black |
+| <navEn to="library" /> | Default category, sort, view, columns, badges, Wi-Fi-only or charging-only updates, swipe to mark read |
+| <navEn to="reader" /> | Default manga direction, page animation, crop, filters, preload, e-ink flash |
+| <navEn to="player" /> | Speed, auto-next, skip opening and ending, subtitles, danmaku |
+| <navEn to="downloads" /> | Wi-Fi only, CBZ, parallelism, download new chapters, remove after reading |
+| BitTorrent | Appears only after the BT component is installed |
+| <navEn to="browse" /> | Whether NSFW sources are shown |
+| <navEn to="tracking" /> | Automatic sync, and sign-in for the 10 tracking services |
+| Data and storage | Storage location, backup and restore, automatic backups, chapter cache, library-list export |
+| <navEn to="security-and-privacy" /> | App lock, lock when leaving, hide notification content, secure screen |
+| <navEn to="advanced" /> | Crash logs, DoH, User-Agent, clear cookies, refresh covers, reset per-series reader settings |
+| Translation | Engine order, keys, target language, connectivity test |
+| About | Version, open-source licenses, privacy policy |
 
-## How do I enable dark mode?
+Local folders are not a settings group. Manage them from Local manga, Local novels, and Local video in <navEn to="main_browse" />.
 
-Choose dark mode in <navEn to="appearance" />, or follow the system setting.
+## How do I turn on dark mode?
+
+In <navEn to="appearance" />, choose dark, light, or follow the system. Pure black is available while dark is on. There are 23 color themes, including Nord, Catppuccin, Dracula, and Kanagawa.
+
+The interface has 20 languages, or it can follow the system.
 
 ## What is encrypted DNS (DoH)?
 
-DoH (DNS over HTTPS) encrypts domain name resolution over HTTPS, preventing DNS queries from being intercepted or hijacked in plain text. It is off by default and can be enabled in <navEn to="advanced" />.
+DoH resolves domain names over HTTPS. It is off by default. Pick a provider in <navEn to="advanced" />: Cloudflare, Google, AdGuard, Quad9, AliDNS, DNSPod, 360, Quad 101, Mullvad, Control D, Njalla, or Shecan. If a lookup fails, the app falls back to the system DNS.
 
-## How do I keep others from seeing what I read?
+## How do I keep a reading session private?
 
-- Enable the **app lock** (biometrics) in <navEn to="security-and-privacy" />;
-- Enable the **privacy window** (content is hidden in screenshots / screen recordings);
-- Enable **hide notification content**;
-- Read with incognito mode (<navEn to="incognito-mode" />) to avoid recording history.
+- Turn on **App lock** in <navEn to="security-and-privacy" /> and unlock with a system lock-screen credential;
+- **Secure screen** can be always, only in incognito, or off. The default is only in incognito. While it applies, screenshots and recordings do not show the content;
+- Turn on **Hide notification content**;
+- Use <navEn to="incognito-mode" /> to pause history and reading-time stats.

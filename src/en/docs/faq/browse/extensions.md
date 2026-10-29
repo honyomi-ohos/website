@@ -1,41 +1,42 @@
 ---
 title: Extensions
 titleTemplate: Frequently Asked Questions
-description: Frequently asked questions about Honyomi extensions (source plugins).
+description: Frequently asked questions about Honyomi extensions.
 ---
 
 # Extensions
 
-Frequently asked questions about Honyomi extensions (source plugins, `.honyomiplug`).
+Frequently asked questions about Honyomi extensions (`.honyomiplug`).
 
-## What are extensions?
+## What is an extension?
 
-Extensions (source plugins) are plugin packages that add online content sources. Once installed, their sources appear in the <navEn to="main_browse" /> tab for browsing and reading.
+An extension is the plugin that connects an online source. After you install it, its sources show up in <navEn to="main_browse" />.
 
-Honyomi **ships with no content sources** and does not provide resources for any third-party extensions or repositories.
+Honyomi does not ship content sources, and it does not supply third-party extensions or repositories.
 
 ## How do I install an extension?
 
-1. Obtain the `.honyomiplug` package file;
-1. Go to <navEn to="extensions" />, tap install and select the package file;
-1. After installation, the source appears in <navEn to="main_browse" />.
+Both ways are in <navEn to="extensions" />:
 
-Installing, updating, and uninstalling extensions is managed in <navEn to="extensions" />.
+1. **Repository**: add the repository URL, refresh, and install from the list. Installed extensions can be checked and updated here;
+1. **Local file**: pick a `.honyomiplug` or `.zip` in the document picker.
 
-## How do I update an extension?
+While nothing is installed, Browse shows an installation prompt.
 
-Check the versions of your installed extensions in <navEn to="extensions" />. To update, download the new `.honyomiplug` package and install it over the old one.
+## What is an NSFW extension?
 
-## What are NSFW extensions?
+Sources marked NSFW stay hidden until **Show NSFW sources** is turned on in <navEn to="browse" />. They then appear in Browse and in Updates.
 
-Extensions marked NSFW (Not Safe For Work) are hidden by default. To show them, enable **Show NSFW sources** in the <navEn to="browse" /> settings.
+## Can one extension skip history on its own?
 
-## Are extensions risky?
+Yes. Open the extension’s page and turn on its incognito switch. Browsing that plugin’s sources does not write history or reading-time stats. Global incognito is <navEn to="incognito-mode" />.
+
+## What is the risk of installing an extension?
 
 ::: danger Caution
-Any third-party extension will have full access to the app and may contain malware. Honyomi cannot audit third-party extension behavior. Only install extensions from sources you trust.
+A third-party extension has the app’s full access and may contain malicious code. Honyomi does not review these extensions. Add only repositories you trust, and install only packages you trust.
 :::
 
-## I want to write an extension for Honyomi
+## I want to write an extension
 
-Refer to `docs/plugin-interface.md` in the repository, which defines the extension manifest (`manifest.json`) fields, the runtime DSL, and host behaviors.
+`docs/plugin-interface.md` in the repository describes `manifest.json`, the runtime interface, and host behavior.

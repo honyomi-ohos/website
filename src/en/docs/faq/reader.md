@@ -1,43 +1,56 @@
 ---
 title: Reader
 titleTemplate: Frequently Asked Questions
-description: Frequently asked questions about the Honyomi reader and player.
+description: Frequently asked questions about the Honyomi readers and player.
 ---
 
 # Reader
 
-Frequently asked questions about the Honyomi manga reader, novel reader, and video player.
+Frequently asked questions about the manga reader, novel reader, and video player.
 
-## Which modes does the manga reader support?
+## Which manga reading modes are there?
 
-- **Paged mode**: left/right page turns (tap / swipe);
-- **Continuous vertical scrolling**: ideal for webtoons;
-- Display options such as **double-page mode**, **trim white borders**, **brightness filters**, and **reading direction** can be adjusted in the reader.
+The direction is remembered per series:
 
-See [Reader settings](/en/docs/guides/reader-settings) for details.
+- **Left to right**, **right to left**, and **vertical pages**;
+- **Webtoon** and **continuous scroll**;
+- **Smart grip**.
+
+Page animations are curl, slide, and cover. Single-page horizontal mode also has 3D cube, stack, fade, 3D flip, and sphere. Landscape can turn dual-page on automatically. Webtoon has no auto page-turn.
+
+Crop, color filters, brightness, zoom, preload, and the e-ink flash are in the reader. Global defaults are in <navEn to="reader" />.
+
+See [Reader settings](/en/docs/guides/reader-settings).
 
 ## Can novels be read aloud?
 
-Yes. Honyomi supports on-device text-to-speech narration:
+Yes. Narration uses the system voice and stays on the device:
 
-- Adjustable speech rate;
-- Continuous background playback with notification controls;
-- Narration happens entirely on the device – no internet connection needed.
+- Speed and voice can be changed;
+- The sleep timer can be a number of minutes or a number of chapters;
+- Playback can continue in the background, with a mini bar on other screens.
 
-## Which gestures does the video player support?
+## Which gestures does the video player use?
 
-- Double-tap the left/right area: rewind / fast-forward;
-- Swipe up/down: adjust volume / brightness;
-- Playback speed, quality, episode list, and screen lock are also supported.
+- Double-tap the left or right side to jump back or forward 10 seconds;
+- Swipe up or down on the left half for brightness, and on the right half for volume;
+- Swipe sideways to preview and seek;
+- Press and hold to boost the speed.
+
+Speed, picture quality, the episode list, and a screen lock are also available. Opening and ending skip, and subtitles, are in <navEn to="player" />.
 
 ## How does danmaku work?
 
-Danmaku (bullet comments) are enabled by default and can be toggled at any time. When enabled, the app sends the title of the currently playing work to the dandanplay service (api.dandanplay.net) to match the episode and load danmaku; no account or device identifiers are sent. Font size, opacity, display area, and scroll speed can be adjusted in the <navEn to="player" /> settings.
+Danmaku is on by default. Turn it off in the player or in <navEn to="player" />. While it is on, the app sends the title of the playing series to dandanplay (api.dandanplay.net) to match an episode. It does not send an account or a device identifier.
 
-## Is reading progress saved automatically?
+Size, opacity, screen area, and speed can be changed. A comment can scroll, sit at the top, or sit at the bottom.
 
-Yes. The app remembers reading progress and position for every work and restores them when you open it again.
+## Is progress saved automatically?
 
-## Can progress sync to tracking services?
+Yes. The manga page, novel position, and video position are stored per series and restored the next time you open it.
 
-Yes. AniList, MyAnimeList, Bangumi, Kitsu, Shikimori, MangaUpdates, MangaBaka, and Hikka are supported – 8 services in total. See the [Tracking guide](/en/docs/guides/tracking).
+## Can progress sync to a tracking service?
+
+Yes. Ten services are supported: AniList, MyAnimeList, Bangumi, Kitsu, Shikimori, MangaUpdates, Hikka, Komga, Kavita, and Suwayomi.
+
+Automatic sync is on by default. After a chapter is marked read, the app refreshes that remote entry and then writes the progress when the local chapter number is further ahead. See the [tracking guide](/en/docs/guides/tracking).

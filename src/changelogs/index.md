@@ -13,6 +13,6 @@ import ChangelogsList from "@theme/components/ChangelogsList.vue";
 
 # 更新日志
 
-Honyomi 全部稳定版本的更新日志，同样可在 [GitHub](https://github.com/ShueyYuen/honyomi/releases) 上查看。
+Honyomi 全部稳定版本的更新日志。安装和更新请使用华为应用市场。
 
 <ChangelogsList />

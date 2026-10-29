@@ -1,44 +1,43 @@
 ---
 title: Tracking
 titleTemplate: Guides
-description: Guide to connecting tracking services and syncing reading progress.
+description: How to connect a tracking service and sync reading progress.
 ---
 
 # Tracking
 
-Guide to connecting tracking services and syncing reading progress.
+How to write reading progress back to a tracking service. Local reading works without signing in.
 
-## Supported tracking services
+## Supported services
 
-Honyomi supports the following 8 tracking services:
+There are 10. The sign-in method depends on the service:
 
-- AniList
-- MyAnimeList
-- Bangumi
-- Kitsu
-- Shikimori
-- MangaUpdates
-- MangaBaka
-- Hikka
+| Service | Sign-in |
+| --- | --- |
+| AniList, MyAnimeList, Bangumi, Shikimori, Hikka | An authorization page inside the app |
+| Kitsu, MangaUpdates | Username and password |
+| Komga, Kavita, Suwayomi | The address of your own server, plus the account or key that service asks for |
 
-## Connecting a tracking service
+Open them from <navEn to="tracking" />, or from the tracking sheet on a series page.
 
-1. Open the details page of a series in your library;
-1. Tap the **Tracking** button to open the service picker;
-1. Choose the service you want to use;
-1. Complete the login and authorization on the service's website;
-1. Return to the app – your reading status, scores, and progress will sync.
-
-::: info Token security
-Authorization tokens are stored only in the device's Asset Store (hardware-backed TEE) and never uploaded anywhere else.
+::: info Where credentials live
+Tokens and passwords are kept in the system secure store. The settings page does not show the secret again.
 :::
 
-## How syncing works
+## Automatic sync
 
-- One-way and two-way sync are supported;
-- Reading progress is pushed to the tracking service automatically as you read;
-- Sync status can be refreshed manually from the series details page.
+Automatic sync in <navEn to="tracking" /> is on by default. After a chapter is marked read, and the series is linked to an entry, the app refreshes the remote state and then writes the progress when the local chapter number is further ahead.
 
-## Disconnecting a tracking service
+With automatic sync off, progress stays on the device until you update it from the series page.
 
-Disconnect the service from the tracking panel on the series details page – the app immediately deletes the stored token from the device.
+## Link a series
+
+1. Open the series from the library;
+1. Open **Tracking**;
+1. Pick a service you are signed in to, search, and choose the matching entry.
+
+One series can be linked to more than one service.
+
+## Sign out
+
+Signing out of a service in <navEn to="tracking" /> clears that service’s credentials on the device. Unlinking a single series on its page does not sign the account out.

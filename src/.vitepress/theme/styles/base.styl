@@ -259,154 +259,48 @@ main :where(h1, h2, h3, h4, h5, h6) + figure {
 }
 
 /**
- * Liquid Glass
+ * Scrollbar
+ * Thin inset thumbs in place of the platform scrollbar. Track stays
+ * transparent so sidebars and code blocks do not pick up a solid gutter.
  * -------------------------------------------------------------------------- */
-/* Real HTML-in-Canvas glass (https://wicg.github.io/html-in-canvas/):
- * each glass surface is a content="drawable" <canvas> holding a drawable
- * backdrop element, snapshotted into a WebGL2 texture via
- * texElementSubImage2D and rendered with a glass shader. Browsers without
- * the flagged API get the CSS backdrop-filter fallback. */
 
-html {
-  background-color: var(--vp-c-bg)
-  /* Glass canvases outset by a sampling pad must not create scrollbars. */
-  overflow-x: clip
-}
-
-body {
-  position: relative
-  background-color: transparent
-}
-
-/* Shared ambient blob gradients. Both the fixed page layer and each glass
-   backdrop use them; --lg-ox/--lg-oy keep the blobs viewport-aligned when
-   painted from a glass surface at another document position. */
-.lg-ambient-bg {
-  --lg-ox: 0px
-  --lg-oy: 0px
-  background:
-    radial-gradient(42rem 30rem at calc(12vw + var(--lg-ox)) calc(-6vh + var(--lg-oy)), rgba(229, 72, 77, 0.1), transparent 60%),
-    radial-gradient(38rem 28rem at calc(88vw + var(--lg-ox)) calc(12vh + var(--lg-oy)), rgba(58, 122, 244, 0.08), transparent 60%),
-    radial-gradient(46rem 34rem at calc(70vw + var(--lg-ox)) calc(86vh + var(--lg-oy)), rgba(240, 138, 93, 0.07), transparent 60%)
-}
-
-html.dark .lg-ambient-bg {
-  background:
-    radial-gradient(44rem 32rem at calc(10vw + var(--lg-ox)) calc(-4vh + var(--lg-oy)), rgba(229, 72, 77, 0.16), transparent 60%),
-    radial-gradient(40rem 30rem at calc(92vw + var(--lg-ox)) calc(8vh + var(--lg-oy)), rgba(64, 86, 214, 0.14), transparent 60%),
-    radial-gradient(50rem 36rem at calc(66vw + var(--lg-ox)) calc(92vh + var(--lg-oy)), rgba(122, 60, 150, 0.1), transparent 60%)
-}
-
-/* Fixed ambient color blobs behind all content, above the page background. */
-.lg-ambient {
-  position: fixed
-  inset: 0
-  z-index: -1
-  pointer-events: none
-}
-
-/* The drawable backdrop laid out inside each glass canvas. */
-.lg-backdrop {
-  display: block
-}
-
-/* The glass canvas sits behind the content of its glass root. */
-.liquid-glass-canvas {
-  z-index: -1
-  display: block
-  pointer-events: none
-  opacity: 0
-  transition: opacity 0.45s ease
-
-  &.lg-ready {
-    opacity: 1
-  }
-}
-
-/* CSS fallback when the HTML-in-Canvas API is unavailable. */
-[data-liquid-glass].lg-fallback {
-  backdrop-filter: blur(18px) saturate(1.5)
-  -webkit-backdrop-filter: blur(18px) saturate(1.5)
-  background: rgba(255, 255, 255, 0.5)
-}
-
-html.dark [data-liquid-glass].lg-fallback {
-  background: rgba(18, 19, 23, 0.55)
-}
-
-@media print {
-  .lg-ambient,
-  .liquid-glass-canvas {
-    display: none
-  }
-}
-
-/* Transparent navbar: the bar glass canvas provides the surface. */
 :root {
-  --vp-nav-bg-color: transparent
+  --scrollbar-size: 12px
+  --scrollbar-thumb: unquote("color-mix(in srgb, var(--vp-c-text-3) 88%, transparent)")
+  --scrollbar-thumb-hover: unquote("color-mix(in srgb, var(--vp-c-text-2) 92%, transparent)")
 }
 
-/* Glass hero action buttons (VPButton replacement). */
-.glass-button {
-  display: inline-block
-  border-radius: 20px
+html,
+* {
+  scrollbar-width: thin
+  scrollbar-color: var(--scrollbar-thumb) transparent
+}
 
-  &.big {
-    border-radius: 24px
-  }
+::-webkit-scrollbar {
+  width: var(--scrollbar-size)
+  height: var(--scrollbar-size)
+}
 
-  .VPButton {
-    display: inline-flex
-    align-items: center
-    justify-content: center
-    gap: 8px
-    border: none
-    border-radius: inherit
-    font-weight: 600
-    white-space: nowrap
-    cursor: pointer
-    background: transparent
-    text-decoration: none !important
-    transition: color 0.25s, transform 0.25s
-  }
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track-piece,
+::-webkit-scrollbar-corner {
+  background: transparent
+}
 
-  .VPButton.medium {
-    padding: 0 24px
-    font-size: 16px
-    line-height: 44px
-  }
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb)
+  border: 3px solid transparent
+  border-radius: 999px
+  background-clip: padding-box
+}
 
-  .VPButton.big {
-    padding: 0 28px
-    font-size: 17px
-    line-height: 52px
-  }
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+  background-color: var(--scrollbar-thumb-hover)
+}
 
-  .VPButton.brand {
-    color: #fff
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18)
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22)
-
-    &:hover {
-      color: #fff
-    }
-  }
-
-  .VPButton.alt,
-  .VPButton.sponsor {
-    color: var(--vp-c-text-1)
-    box-shadow: inset 0 0 0 1px rgba(127, 127, 127, 0.22)
-
-    &:hover {
-      color: var(--vp-c-brand)
-    }
-  }
-
-  &:hover .VPButton {
-    transform: translateY(-1px)
-  }
-
-  &:active .VPButton {
-    transform: translateY(0)
-  }
+::-webkit-scrollbar-button {
+  display: none
+  width: 0
+  height: 0
 }

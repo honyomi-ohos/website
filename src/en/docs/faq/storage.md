@@ -20,10 +20,10 @@ Yes. Uninstalling deletes all local data (including tokens in secure storage). [
 
 ## How do I back up my data?
 
-Go to <navEn to="settings" /> → **Backup** to export your library, categories, reading progress, and download history to a local backup file. See the [Backups guide](/en/docs/guides/backups).
+Open <navEn to="main_more" /> → **Data and storage** → **Create backup**. The file is JSON and contains categories, library series, chapter read flags, and the last page read. It contains no tracking tokens, passwords, or cookies, and no downloaded images or video. See the [Backups guide](/en/docs/guides/backups).
 
-Backup files contain **no** tokens, passwords, or cookies.
+The same page sets automatic backups (off, every 6 hours, every 12 hours, every day, every 2 days, or every week). Only the latest 3 automatic files are kept. You can also export the library as a CSV of titles and authors. A CSV file cannot be restored.
 
 ## How do I restore data?
 
-In <navEn to="settings" /> → **Backup**, choose a backup file to import and restore your library.
+In **Data and storage**, tap **Restore backup** and choose a `.json` file you exported earlier.

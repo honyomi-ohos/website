@@ -1,17 +1,19 @@
 ---
 title: 即将更新
 titleTemplate: 常见问题
-description: Honyomi 后续版本规划。
+description: 关于 Honyomi 即将更新列表和放送时间表的说明。
 ---
 
 # 即将更新
 
-Honyomi 后续版本的功能规划。
+<nav to="main_updates" /> 顶栏可以打开 **即将更新**。这里按日期列出书架里还没发布的章节，方便查看接下来会更新什么。
 
-## 如何了解开发进展？
+顶栏同样可以按分类筛选。
 
-请关注 [GitHub Releases](https://github.com/ShueyYuen/honyomi/releases) 与本站 [更新日志](/changelogs/)。
+## 放送时间表
 
-## 我可以提出功能建议吗？
+更新页里还有一段 **时间表**，和章节列表并列。它按星期一到星期日显示 Bangumi 当日放送，点星期即可切换。刷新这一段会重新拉取日历；刷新章节列表则是在检查书架。
 
-欢迎在 [GitHub Issues](https://github.com/ShueyYuen/honyomi/issues) 中提出。请先搜索已有 issue，确认没有重复后再提交。
+## 和应用版本有关的消息
+
+应用本身的新版本不在这个页面里发布。请到华为应用市场更新，更新说明见 [更新日志](/changelogs/)。功能建议可以提到 [GitHub Issues](https://github.com/ShueyYuen/honyomi/issues)，提交前先搜一下是否已经有人提过。

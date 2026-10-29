@@ -1,41 +1,44 @@
 ---
 title: Categories
 titleTemplate: Guides
-description: Guide to organizing your library with categories.
+description: How to organize the library with categories.
 ---
 
 # Categories
 
-Guide to organizing your **Honyomi** library with categories.
+How to organize the **Honyomi** library with categories.
 
-## What are categories?
+## What is a category?
 
-Categories are library groups, such as "Manga", "Novels", "Anime", or "Watching", "Finished". Categories keep a large library tidy.
+A category is a group on the shelf, such as “Manga”, “Novels”, or “Reading”. One series can belong to several categories at once. Tabs at the top of the library switch between them, and can show how many series each one holds.
 
-## Creating a category
+## Create and manage
 
-1. Go to <navEn to="categories" />;
-1. Tap **New category**;
-1. Enter a name and confirm.
+1. Open <navEn to="categories" />;
+1. Create a category and enter a name.
 
-## Managing categories
+In the list:
 
-In <navEn to="categories" /> you can:
+- Tap a category you created to rename or delete it;
+- Long-press and drag to change the order.
 
-- Create categories;
-- Rename categories;
-- Reorder categories by dragging.
+The app starts with three categories: **Manga**, **Novels**, and **Anime**. Those three cannot be renamed or deleted. If you delete one you created, any series left with no category moves back to **Manga**.
 
-## Adding series to a category
+## Default category
 
-1. Long-press a series in <navEn to="main_library" /> (multiple selection is supported);
-1. Choose **Move to category**;
-1. Pick the target category.
+**Default category** in <navEn to="library" /> decides where a newly added series goes. The row is hidden until you have created at least one category.
 
-## Filtering by category
+- **Automatic (by content type)**: use the built-in grouping for manga, novels, or video;
+- **Ask every time**: show the category picker when adding;
+- A specific existing category: put the series there immediately.
 
-Choose a category in the filter at the top of <navEn to="main_library" /> to show only its series. Combined with sorting, you can organize the library the way you like.
+## Change a series’ categories
 
-## Removing a series from a category
+1. Long-press a series in <navEn to="main_library" />. You can select more than one;
+1. Open the category picker and check the categories it should belong to.
 
-Long-press the series and choose "Default" under **Move to category** to return it to the uncategorized state.
+The checked set replaces that series’ previous categories. If nothing is checked, the series goes back to the built-in **Manga** category.
+
+## Filter the library by category
+
+Tap a category tab at the top of <navEn to="main_library" />. The tab shows only series in that category.

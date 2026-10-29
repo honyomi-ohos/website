@@ -26,8 +26,8 @@ export interface ThemeLabels {
   previewDescription: string
   unsupportedTitle: string
   unsupportedBody: string
-  releasesOnGitHub: string
-  githubReleasesLink: string
+  appGallery: string
+  storeNote: string
 }
 
 const zh: ThemeLabels = {
@@ -55,8 +55,8 @@ const zh: ThemeLabels = {
   previewDescription: '可能包含未完成的功能或稳定性问题',
   unsupportedTitle: '不受支持的操作系统',
   unsupportedBody: 'Honyomi 仅提供 HarmonyOS 版本。任何其他平台上名为 Honyomi 的应用均与本项目无关。',
-  releasesOnGitHub: '也可以在 GitHub 上查看',
-  githubReleasesLink: 'GitHub Releases',
+  appGallery: '前往华为应用市场',
+  storeNote: '安装和更新都在华为应用市场完成。华为不允许侧载，本站不提供安装包。',
 }
 
 const en: ThemeLabels = {
@@ -84,8 +84,8 @@ const en: ThemeLabels = {
   previewDescription: 'May contain unfinished features or stability issues',
   unsupportedTitle: 'Unsupported operating system',
   unsupportedBody: 'Honyomi is only available on HarmonyOS. Any non-HarmonyOS app named Honyomi is unaffiliated with this project.',
-  releasesOnGitHub: 'Also available on',
-  githubReleasesLink: 'GitHub Releases',
+  appGallery: 'Get it on AppGallery',
+  storeNote: 'Install and update Honyomi from Huawei AppGallery. Sideloading is not available.',
 }
 
 export function useThemeI18n() {

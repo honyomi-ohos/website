@@ -25,12 +25,12 @@ The app may interact with third-party websites or services in the following scen
 | --- | --- | --- | --- |
 | Local library / reading progress / download history / preferences | — | Stored on the device only | Never uploaded |
 | Browsing or reading from an online source (a user-installed extension) | Off | Requests go directly to the third-party site | Handled by that site under its own policy; the app does not process or store them |
-| Connecting to a tracking service (syncing reading progress) | Off (active after the user logs in) | OAuth token, progress data | Sent directly to the chosen tracking service; the token is stored only in the device's secure storage |
+| Connecting to a tracking service (syncing reading progress) | Automatic sync is on by default, after you sign in to a service | Authorization token or account credentials, and reading progress | Sent directly to the service you chose; credentials stay in the device's secure storage |
 | Video danmaku (dandanplay) | On (can be disabled at any time) | Title of the currently playing work | Sent to api.dandanplay.net to match the episode and load danmaku; no account or device identifiers are sent |
 | Encrypted DNS (DoH) | Off | Domain name resolution requests | Sent to the chosen DoH provider once enabled |
 | Text-to-speech narration | — | Novel text | On-device speech synthesis; narration never leaves the device |
 | Backup / restore | — | Library, categories, reading progress, etc. | Exported to a file at a location of the user's choice; contains **no** tokens, passwords, or cookies |
-| App lock | Off | Local biometric verification | Used only to unlock the app; biometrics never leave the device (verified by the system, not collected by the app) |
+| App lock | Off | System lock-screen check (PIN, face, or fingerprint) | Used only to unlock the app. The system shows the prompt; the app does not collect biometric data |
 
 ## Permissions
 
@@ -41,7 +41,7 @@ All permissions declared by the app are system-level (normal) permissions. The a
 | ohos.permission.INTERNET | Loading online source content and connecting to user-chosen services |
 | ohos.permission.GET_NETWORK_INFO | Checking network availability |
 | ohos.permission.FILE_ACCESS_PERSIST | Remembering user-authorized local library directories |
-| ohos.permission.ACCESS_BIOMETRIC | Local biometric verification for the app lock |
+| ohos.permission.ACCESS_BIOMETRIC | App lock, using the system prompt (PIN, face, or fingerprint) |
 | ohos.permission.PRIVACY_WINDOW | Screenshot protection (active when enabled by the user) |
 | ohos.permission.KEEP_BACKGROUND_RUNNING | Keeping downloads / narration / BT downloads running in the background |
 
@@ -51,7 +51,7 @@ The app does not integrate any third-party SDKs that collect personal informatio
 
 | Service | Trigger | What is sent | Where it is stored |
 | --- | --- | --- | --- |
-| Tracking services (AniList, MyAnimeList, Kitsu, Shikimori, Bangumi, MangaUpdates, MangaBaka, Hikka) | User connects an account | OAuth authorization, reading progress | Access tokens are stored only in the device's Asset Store (hardware-backed TEE) and never uploaded anywhere else |
+| Tracking services (AniList, MyAnimeList, Kitsu, Shikimori, Bangumi, MangaUpdates, Hikka, Komga, Kavita, Suwayomi) | The user signs in | An authorization page, a username and password, or a self-hosted server address and key; plus reading progress | Credentials stay in the device Asset Store (hardware-backed TEE) and are not uploaded anywhere else |
 | dandanplay danmaku service | Video playback with danmaku enabled (default on, can be disabled) | Work title (for episode matching) | Danmaku is cached in memory only, never written to disk |
 | Online source sites (websites targeted by user-installed extensions) | User browses / reads that source | Browse requests (direct to the site) | Handled by the site itself |
 | DoH provider | User enables encrypted DNS (default off) | DNS resolution requests | Contains no user identity information |
@@ -64,7 +64,7 @@ Extensions (source plugins) are installed by the user as `.honyomiplug` packages
 - Tracking service tokens / passwords and sensitive extension settings are stored in the system Asset Store (hardware-backed TEE);
 - Network cookies are stored AES-256-GCM encrypted, with keys held in the Asset Store;
 - Release builds enable code obfuscation and shrinking, and extension network requests are forced over HTTPS;
-- The app offers optional local protections such as app lock (biometrics) and privacy window (screenshot prevention).
+- The app offers optional local protections: an app lock that uses the system lock-screen credential, and a secure screen that blocks screenshots. The secure screen applies only during incognito unless you change it.
 
 ## External Links
 

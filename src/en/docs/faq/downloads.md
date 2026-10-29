@@ -1,36 +1,43 @@
 ---
 title: Downloads
 titleTemplate: Frequently Asked Questions
-description: Frequently asked questions about download management in Honyomi.
+description: Frequently asked questions about downloads in Honyomi.
 ---
 
 # Downloads
 
-Frequently asked questions about download management in Honyomi.
+Frequently asked questions about downloads in Honyomi.
 
 ## How do I download chapters?
 
-1. Open the series details page;
-1. Tap the download button next to a chapter, or use the long-press menu to batch download;
-1. Go to <navEn to="download-queue" /> to see the download queue and progress.
+1. Open the series page;
+1. Tap a chapter’s download indicator, or long-press and select chapters to queue them together;
+1. Open <navEn to="download-queue" /> to watch, pause, or delete jobs.
 
-## Where are downloads stored?
+## Where are downloaded files stored?
 
-Downloads are stored in the app sandbox. You can view and manage the download location in the <navEn to="downloads" /> settings.
+In the app’s private storage. There is no setting to pick another folder. Usage is shown under **Data and storage** on <navEn to="main_more" />. Uninstalling the app deletes these files.
 
-## Can I download over Wi-Fi only?
+## Can downloads wait for Wi-Fi?
 
-Yes. Enable **Download over Wi-Fi only** in the <navEn to="downloads" /> settings.
+Yes. Turn on **Wi-Fi only** in <navEn to="downloads" />.
 
-## What are BT downloads?
+The same page can also:
 
-Some online sources distribute content via BitTorrent. The first time you use a BT download, the system downloads the BT component on demand through the app marketplace (about 11 MB); a confirmation dialog is shown before downloading.
+- Save image chapters as CBZ, or split very tall webtoon images;
+- Set how many sources and pages download at once;
+- Download new chapters automatically (off by default), and download ahead;
+- Remove chapters after you read them, remove ones marked read, and keep bookmarked chapters.
 
-## How do I delete downloaded content?
+## What is a BT download?
 
-- Delete specific download tasks and content in <navEn to="download-queue" />;
-- When removing a series from the library, you can optionally delete downloaded files as well.
+Some video chapters are distributed with BitTorrent. The first time the engine is needed, the app shows the component size and asks before downloading it. After it is installed, **BitTorrent** appears in <navEn to="settings" />: engine, progressive playback, upload and download limits, an upload cap on metered networks, extra trackers, a share ratio, and a peer filter.
+
+## How do I delete downloaded files?
+
+- Delete the job and its files in <navEn to="download-queue" />;
+- When removing a series from the library, choose to delete its downloaded chapters as well.
 
 ## Do downloads continue in the background?
 
-Yes. The app declares background running capability, so downloads, narration, and BT downloads continue in the background.
+Yes. Downloads, read-aloud, and BT downloads use the system’s background-running capability and can continue after you leave the screen.

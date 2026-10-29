@@ -6,14 +6,12 @@ import {
   IconAlertOutline,
   IconCalendarOutline,
   IconCellphone,
-  IconFlaskOutline,
   IconTagOutline,
 } from '@iconify-prerendered/vue-mdi'
 import { computed } from 'vue'
-import { GITHUB_RELEASES_URL } from '../../config/constants'
+import { APP_GALLERY_URL } from '../../config/constants'
 import { data as release } from '../data/release.data'
 import { useThemeI18n } from '../utils/i18n'
-import LiquidGlass from './LiquidGlass.vue'
 import ReleaseDate from './ReleaseDate.vue'
 
 type ReleaseId = 'preview' | 'stable'
@@ -22,14 +20,13 @@ type ButtonTone = 'primary' | 'secondary'
 
 interface DownloadCard {
   id: ReleaseId
-  asset?: { browser_download_url: string, name: string }
   buttonTone: ButtonTone
   dateType?: ReleaseDateType
   description: string
   icon?: Component
   isPrimary?: boolean
   note?: string
-  tagName: string
+  tagName?: string
   title: string
   useAppLogo?: boolean
 }
@@ -42,57 +39,19 @@ const props = withDefaults(defineProps<{
 
 const { labels } = useThemeI18n()
 
-// Honyomi ships HarmonyOS packages; match the common installable extensions
-// and fall back to the first asset when nothing matches.
-const installable = /\.(hap|app|apk)$/i
-
-const downloadInformation = computed(() => ({
-  stable: {
-    tagName: release.stable?.tag_name ?? 'v0.0.0',
-    asset: (release.stable?.assets ?? [])
-      .find(asset => installable.test(asset.name)) ?? (release.stable?.assets ?? [])[0],
-  },
-  preview: {
-    tagName: release.beta?.tag_name ?? 'v0.0.0',
-    asset: (release.beta?.assets ?? [])
-      .find(asset => installable.test(asset.name)) ?? (release.beta?.assets ?? [])[0],
-  },
-}))
-
-const hasPreview = computed(() =>
-  !!release.beta
-  && !!release.stable
-  && release.beta.tag_name !== release.stable.tag_name,
-)
-
 const downloadCards = computed<DownloadCard[]>(() => {
-  const cards: DownloadCard[] = [
-    {
-      id: 'stable',
-      ...downloadInformation.value.stable,
-      buttonTone: 'primary',
-      dateType: 'stable',
-      description: labels.value.stableDescription,
-      isPrimary: true,
-      note: labels.value.stableNote,
-      title: labels.value.stableTitle,
-      useAppLogo: true,
-    },
-  ]
-
-  if (hasPreview.value) {
-    cards.push({
-      id: 'preview',
-      ...downloadInformation.value.preview,
-      buttonTone: 'secondary',
-      dateType: 'preview',
-      description: labels.value.previewDescription,
-      icon: IconFlaskOutline,
-      title: labels.value.previewTitle,
-    })
-  }
-
-  return cards.filter(card => card.asset)
+  const stable = release.stable
+  return [{
+    id: 'stable',
+    tagName: stable?.tag_name,
+    buttonTone: 'primary',
+    dateType: stable ? 'stable' : undefined,
+    description: labels.value.stableDescription,
+    isPrimary: true,
+    note: labels.value.stableNote,
+    title: labels.value.stableTitle,
+    useAppLogo: true,
+  }]
 })
 
 const visibleDownloadCards = computed(() => downloadCards.value.filter((card) => {
@@ -121,72 +80,63 @@ function handleAnalytics(type: ReleaseId) {
 
 <template>
   <div>
-    <div v-if="downloadCards.length === 0" class="custom-block info">
-      <p class="custom-block-title">
-        {{ labels.releasesOnGitHub }}
-      </p>
-      <p>
-        <a :href="GITHUB_RELEASES_URL" target="_blank" rel="noopener">{{ labels.githubReleasesLink }}</a>
-      </p>
-    </div>
+    <p class="store-note">{{ labels.storeNote }}</p>
     <section class="release-selector" aria-label="Choose your release">
-      <div class="release-cards" :class="{ 'has-preview': hasPreview }">
+      <div class="release-cards">
         <article
           v-for="card in visibleDownloadCards"
           :key="card.id"
           class="release-card"
           :class="[card.id, { 'is-primary': card.isPrimary }]"
         >
-          <div class="release-card-header">
-            <span class="release-icon" aria-hidden="true">
-              <img v-if="card.useAppLogo" class="app-logo" src="/img/logo-128px.png" alt="">
-              <component :is="card.icon" v-else />
-            </span>
-            <div>
-              <h3>{{ card.title }}</h3>
-              <p>{{ card.description }}</p>
-            </div>
-          </div>
-          <dl v-if="card.dateType" class="release-details">
-            <div>
-              <IconTagOutline aria-hidden="true" />
-              <div class="release-detail-copy">
-                <dt>{{ labels.latestRelease }}</dt>
-                <dd>{{ card.tagName }}</dd>
+          <div class="release-card-body">
+            <div class="release-card-header">
+              <span class="release-icon" aria-hidden="true">
+                <img v-if="card.useAppLogo" class="app-logo" src="/img/logo-128px.png" alt="">
+                <component :is="card.icon" v-else />
+              </span>
+              <div class="release-card-copy">
+                <h3>{{ card.title }}</h3>
+                <p>{{ card.description }}</p>
               </div>
             </div>
-            <div>
-              <IconCalendarOutline aria-hidden="true" />
-              <div class="release-detail-copy">
-                <dt>{{ labels.releasedAt }}</dt>
-                <dd><ReleaseDate :type="card.dateType" /></dd>
+            <dl v-if="card.dateType" class="release-details">
+              <div>
+                <IconTagOutline aria-hidden="true" />
+                <div class="release-detail-copy">
+                  <dt>{{ labels.latestRelease }}</dt>
+                  <dd>{{ card.tagName }}</dd>
+                </div>
               </div>
-            </div>
-          </dl>
-          <div class="release-actions">
-            <LiquidGlass
-              preset="button"
-              class="download-button-wrap"
-              :class="card.buttonTone"
-              :tint="card.buttonTone === 'primary' ? 'brand' : 'neutral'"
-            >
-              <a
-                class="download-button"
-                :class="card.buttonTone"
-                :download="card.asset?.name"
-                :href="card.asset?.browser_download_url"
-                @click="handleAnalytics(card.id)"
-              >
-                <IconDownload />
-                <span class="text">Honyomi {{ card.title }}</span>
-                <span class="version">{{ card.tagName }}</span>
-              </a>
-            </LiquidGlass>
+              <div>
+                <IconCalendarOutline aria-hidden="true" />
+                <div class="release-detail-copy">
+                  <dt>{{ labels.releasedAt }}</dt>
+                  <dd><ReleaseDate :type="card.dateType" /></dd>
+                </div>
+              </div>
+            </dl>
             <span v-if="card.note" class="release-action-note">
               <IconCellphone v-if="card.id === 'stable'" aria-hidden="true" />
               <IconAlertOutline v-else aria-hidden="true" />
               <span>{{ card.note }}</span>
             </span>
+          </div>
+          <div class="release-actions">
+            <div class="download-button-wrap" :class="card.buttonTone">
+              <a
+                class="download-button"
+                :class="card.buttonTone"
+                :href="APP_GALLERY_URL"
+                target="_blank"
+                rel="noopener noreferrer"
+                @click="handleAnalytics(card.id)"
+              >
+                <IconDownload />
+                <span class="text">{{ labels.appGallery }}</span>
+                <span v-if="card.tagName" class="version">{{ card.tagName }}</span>
+              </a>
+            </div>
           </div>
         </article>
       </div>
@@ -195,8 +145,14 @@ function handleAnalytics(type: ReleaseId) {
 </template>
 
 <style lang="stylus">
+.store-note {
+  margin: 1.25rem 0 0
+  color: var(--vp-c-text-2)
+}
+
 .release-selector {
   margin: 1.5rem auto 0
+  container-type: inline-size
 }
 
 .release-cards {
@@ -225,32 +181,23 @@ function handleAnalytics(type: ReleaseId) {
   background: var(--vp-c-bg-soft)
 
   &.is-primary {
-    grid-template-columns: minmax(13rem, 0.85fr) minmax(17rem, 1fr) minmax(14rem, auto)
-    gap: 0.75rem 1.5rem
+    grid-template-columns: minmax(0, 1fr) max-content
+    align-items: center
+    gap: 0.85rem 1.25rem
     padding: 1.15rem 1.25rem
     border-color: var(--vp-c-brand-border)
     background: linear-gradient(135deg, rgba(229, 72, 77, 0.22), rgba(122, 32, 38, 0.16))
     box-shadow: 0 12px 32px rgba(122, 32, 38, 0.18)
 
-    .release-card-header {
-      grid-column: 1
-      grid-row: 1
-    }
-
-    .release-details {
-      grid-column: 2
-      grid-row: 1 / span 2
-      margin: 0
-    }
-
     .release-actions {
-      display: contents
+      margin: 0
+      padding: 0
     }
 
-    .download-button-wrap {
-      grid-column: 3
-      grid-row: 1 / span 2
-      min-width: 14rem
+    .download-button-wrap,
+    .download-button {
+      width: max-content
+      max-width: 100%
     }
 
     .download-button {
@@ -258,44 +205,24 @@ function handleAnalytics(type: ReleaseId) {
     }
 
     .release-action-note {
-      grid-column: 1
-      grid-row: 2
-      margin: 0
+      margin: 0.7rem 0 0
     }
   }
 
   &.preview {
-    grid-template-columns: minmax(0, 1fr) auto auto
-
-    .release-card-header {
-      grid-column: 1
-      grid-row: 1
-    }
-
-    .release-details {
-      grid-column: 2
-      grid-row: 1
-    }
-
-    .release-actions {
-      display: contents
-    }
-
-    .download-button-wrap {
-      grid-column: 3
-      grid-row: 1
-      width: auto
-      min-width: 12.5rem
-    }
-
-    .release-action-note {
-      grid-column: 1 / -1
-      grid-row: 2
-      margin: 0
-    }
-
     border-color: #514328
     background: linear-gradient(135deg, rgba(171, 132, 36, 0.12), rgba(105, 78, 21, 0.08))
+
+    .release-actions {
+      margin: 0
+      padding: 0
+    }
+
+    .download-button-wrap,
+    .download-button {
+      width: max-content
+      max-width: 100%
+    }
   }
 }
 
@@ -332,11 +259,20 @@ html:not(.dark) {
   }
 }
 
+.release-card-body {
+  min-width: 0
+}
+
 .release-card-header {
   display: flex
   align-items: center
   gap: 0.85rem
   min-width: 0
+
+  .release-card-copy {
+    flex: 1
+    min-width: 0
+  }
 
   h3,
   p {
@@ -498,13 +434,19 @@ html:not(.dark) {
 
   &.primary {
     color: #fff
+    background: var(--vp-c-brand)
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18)
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2)
+
+    &:hover {
+      background: var(--vp-c-brand-dark)
+    }
   }
 
   &.secondary {
-    color: #ffdf9e
-    box-shadow: inset 0 0 0 1px rgba(190, 160, 60, 0.4)
+    color: #6d5420
+    background: rgba(138, 106, 34, 0.12)
+    box-shadow: inset 0 0 0 1px rgba(138, 106, 34, 0.45)
   }
 
   svg {
@@ -523,6 +465,12 @@ html:not(.dark) {
   }
 }
 
+html.dark .download-button.secondary {
+  color: #ffdf9e
+  background: rgba(255, 214, 120, 0.1)
+  box-shadow: inset 0 0 0 1px rgba(190, 160, 60, 0.4)
+}
+
 .release-action-note {
   display: flex
   align-items: flex-start
@@ -539,34 +487,19 @@ html:not(.dark) {
   }
 }
 
-@media (max-width 960px) {
-  .release-card.is-primary {
-    grid-template-columns: minmax(0, 1fr) auto
-    grid-template-rows: auto auto auto
+@container (max-width: 36rem) {
+  .release-card,
+  .release-card.is-primary,
+  .release-card.preview {
+    grid-template-columns: minmax(0, 1fr)
 
-    .release-card-header,
-    .release-details {
-      grid-column: 1
+    .download-button-wrap,
+    .download-button {
+      width: 100%
     }
 
-    .release-card-header {
-      grid-row: 1
-    }
-
-    .release-details {
-      grid-row: 2
-      grid-template-columns: repeat(2, minmax(0, 1fr))
-    }
-
-    .download-button-wrap {
-      grid-column: 2
-      grid-row: 1 / span 2
-      min-width: 14rem
-    }
-
-    .release-action-note {
-      grid-column: 1
-      grid-row: 3
+    .release-actions {
+      margin-top: 0.85rem
     }
   }
 }
@@ -578,25 +511,16 @@ html:not(.dark) {
   }
 
   .release-card,
-  .release-card.is-primary {
+  .release-card.is-primary,
+  .release-card.preview {
     display: flex
     align-items: stretch
     flex-direction: column
     padding: 1.15rem
-  }
 
-  .release-card.preview {
-    .release-actions {
-      display: block
-    }
-
-    .download-button-wrap {
+    .download-button-wrap,
+    .download-button {
       width: 100%
-      min-width: 0
-    }
-
-    .release-action-note {
-      margin-top: 0.6rem
     }
   }
 
@@ -606,7 +530,7 @@ html:not(.dark) {
   }
 
   .release-actions {
-    margin-top: 0.25rem
+    margin-top: 0.85rem
   }
 
   .download-button {

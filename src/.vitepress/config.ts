@@ -106,13 +106,6 @@ export default defineConfig({
             new URL('./theme/components/CustomSwitchAppearance.vue', import.meta.url),
           ),
         },
-        {
-          // Used to render liquid glass hero action buttons.
-          find: /^.*\/VPButton\.vue$/,
-          replacement: fileURLToPath(
-            new URL('./theme/components/GlassButton.vue', import.meta.url),
-          ),
-        },
       ],
     },
   },

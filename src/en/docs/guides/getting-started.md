@@ -10,11 +10,12 @@ Essential information to help you get set up with **Honyomi**.
 
 ## Installation guide
 
-### Downloading Honyomi
+### Installing Honyomi
 
-1. Visit our [download](/en/download/) page to get the latest version of **Honyomi**.
-2. After the download is complete, open the package file.
-3. Proceed with the installation process.
+1. Open Huawei AppGallery, search for **Honyomi**, or open it from the [download](/en/download/) page.
+2. Install it from the store.
+
+HarmonyOS does not allow sideloading, and this site does not offer an install package. Updates come from AppGallery.
 
 ::: info System requirements
 Honyomi requires HarmonyOS 6.1.0 or higher and runs on phones, tablets, and PCs.
@@ -33,7 +34,8 @@ See the [Local source guide](/en/docs/guides/local-source/) for instructions.
 Install community extensions (`.honyomiplug`) to add online sources:
 
 * In the <navEn to="main_browse" /> tab, an installation guide is shown while no extensions are installed;
-* Obtain a `.honyomiplug` package and install it in <navEn to="extensions" />.
+* In <navEn to="extensions" />, add a repository URL, refresh, and install or update from the list;
+* You can also install a local `.honyomiplug` or `.zip` from the document picker.
 
 ::: danger Caution
 Honyomi will not provide resources for any unofficial extensions. Beware that any third-party extensions will have full access to the app and may contain malware.

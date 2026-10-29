@@ -1,31 +1,32 @@
 ---
 title: Source migration
 titleTemplate: Guides
-description: Guide to migrating series between sources.
+description: How to move a series from one source to another.
 ---
 
 # Source migration
 
-Guide to migrating series between sources in Honyomi.
+Point a library series at a different source and keep the reading progress you already have.
 
-## What is source migration?
+## When to use it
 
-When you want to move a series in your library from one source to another (for example, the original source shut down or you found a better one), you can use migration to keep your reading progress and downloaded content.
+Use migration when the old source goes away, its chapter list is incomplete, or you would rather use another extension. It replaces deleting the series and adding it again.
 
-## How to migrate a series
+## How to migrate
 
-1. Go to <navEn to="migrate" />;
-1. Select the series you want to migrate;
-1. Search for and select the matching series on the target source;
-1. Confirm the migration.
+1. From <navEn to="main_browse" />, open <navEn to="migrate" />;
+1. Open the source the series is on now;
+1. Select the series from that source. You can select all of them;
+1. Choose the target source, search, and pick the matching series;
+1. Confirm.
 
-After migrating, the series' library entry and reading progress switch to the new source.
+The library entry and chapter progress then follow the new source. If a match cannot be found, that series can be skipped.
 
-::: warning Note
-Chapter mapping between sources depends on chapter naming in both sources; in some cases progress needs to be corrected manually.
+::: warning Chapter lists may not line up
+Progress follows chapter numbers. If the two sources split chapters differently, the position can be off by a chapter. Check the new source before you continue.
 :::
 
-## Before you migrate
+## Before you start
 
-- [Back up your data](/en/docs/guides/backups) first;
-- Make sure the target source has complete chapters for the series.
+- Export a JSON backup with the [backups guide](/en/docs/guides/backups);
+- Confirm the target source actually has the chapters you need.
