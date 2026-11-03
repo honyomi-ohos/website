@@ -14,6 +14,7 @@ import generateMeta from './config/hooks/generateMeta'
 
 // Allows generation of RSS feed
 import generateOgImages from './config/hooks/generateOgImages'
+import optimizePublicImages from './config/hooks/optimizeImages'
 
 import markdownConfig from './config/markdownConfig'
 
@@ -81,8 +82,9 @@ export default defineConfig({
   },
   transformHead: async context => generateMeta(context, hostname),
   buildEnd: async (context) => {
-    generateFeed(context, hostname)
-    generateOgImages(context)
+    await generateFeed(context, hostname)
+    await generateOgImages(context)
+    await optimizePublicImages(context.outDir)
   },
   vite: {
     resolve: {
